@@ -31,11 +31,11 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/Jannih/jwmanager:${{ github.sha }}
+          tags: ghcr.io/jannih/jwmanager:${{ github.sha }}
 
       - name: Tag Docker image as latest
-        run: docker tag ghcr.io/Jannih/jwmanager:${{ github.sha }} ghcr.io/Jannih/jwmanager:latest
+        run: docker tag ghcr.io/jannih/jwmanager:${{ github.sha }} ghcr.io/jannih/jwmanager:latest
 
       - name: Push latest Docker image
-        run: docker push ghcr.io/Jannih/jwmanager:latest
+        run: docker push ghcr.io/jannih/jwmanager:latest
         if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/')
