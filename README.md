@@ -1,4 +1,5 @@
 # JW Manager
+# Verwaltungs-Software für Versammlungen der Zeugen Jehovas
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
