@@ -1,24 +1,20 @@
 version: '3.8'
 
 services:
-  app:
-    build:
-      context: .
-      dockerfile: Dockerfile
+  jwmanager:
+    image: ghcr.io/jannih/jwmanager:latest
     ports:
       - '3000:3000'
-    volumes:
-      - .:/app
-      - node_modules:/app/node_modules
-    working_dir: /app
-    command: sh -c "corepack enable && corepack prepare pnpm@latest --activate && pnpm install && pnpm dev"
+    environment:
+      DATABASE_URI: ${DATABASE_URI}
+      PAYLOAD_SECRET: ${PAYLOAD_SECRET}
+      NEXT_PUBLIC_SERVER_URL: ${NEXT_PUBLIC_SERVER_URL}
+      NODE_ENV: production
     depends_on:
       - mongo
     env_file:
       - .env
-    environment:
-      # Optional: Überschreiben Sie Umgebungsvariablen hier, falls nötig
-      NODE_ENV: development
+    restart: unless-stopped
 
   mongo:
     image: mongo:latest
@@ -34,5 +30,3 @@ services:
 
 volumes:
   data:
-  node_modules:
-  # pgdata:
