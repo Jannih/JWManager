@@ -43,15 +43,15 @@ ENV NEXT_PUBLIC_SERVER_URL http://localhost:3000
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
-# Copy the built files from the builder stage
+# Copy the built files and necessary runtime files from the builder stage
 COPY --from=builder /app/public ./public
-# Change ownership of the public directory to the application user
-RUN chown -R nextjs:nodejs ./public
-
-# Setup directories and permissions for runtime
-RUN mkdir .next
-RUN chown nextjs:nodejs .next
+COPY --from=builder /app/package.json ./package.json
+COPY --from=builder /app/pnpm-lock.yaml ./pnpm-lock.yaml
 COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
+COPY --from=builder /app/node_modules ./node_modules
+
+# Change ownership of the directories to the application user
+RUN chown -R nextjs:nodejs .
 
 # Switch to non-root user
 USER nextjs
@@ -60,6 +60,7 @@ USER nextjs
 EXPOSE 3000
 ENV PORT 3000
 
+# Install pnpm globally
 USER root
 RUN npm install -g pnpm
 USER nextjs
