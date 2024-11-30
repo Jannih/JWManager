@@ -34,11 +34,6 @@ WORKDIR /app
 ENV NODE_ENV production
 ENV NEXT_TELEMETRY_DISABLED 1
 
-# Set environment variables
-ENV DATABASE_URI mongodb://127.0.0.1/jw-manager
-ENV PAYLOAD_SECRET ef4205a74770a89125f30214
-ENV NEXT_PUBLIC_SERVER_URL http://localhost:3000
-
 # Create and set the application user
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
