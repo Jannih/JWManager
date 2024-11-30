@@ -2,13 +2,47 @@ import sharp from 'sharp'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
 import { buildConfig } from 'payload'
+import { CollectionConfig } from 'payload/types'
+
+// First, let's define the collection configuration
+const LebenUndDienstCollection: CollectionConfig = {
+  slug: 'leben-und-dienst',
+  admin: {
+    useAsTitle: 'datum', // Use the date field as title
+  },
+  fields: [
+    {
+      name: 'datum',
+      type: 'date',
+      required: true,
+      admin: {
+        date: {
+          pickerAppearance: 'dayAndTime',
+          displayFormat: 'dd.MM.yyyy',
+        },
+      },
+    },
+    {
+      name: 'schaetzeAusGottesWort',
+      type: 'group',
+      label: 'SCHÄTZE AUS GOTTES WORT',
+      fields: [
+        {
+          name: 'aufgabe1',
+          type: 'text',
+          label: 'Aufgabe 1',
+        },
+      ],
+    },
+  ],
+}
 
 export default buildConfig({
   // If you'd like to use Rich Text, pass your editor here
   editor: lexicalEditor(),
 
   // Define and configure your collections in this array
-  collections: [],
+  collections: [LebenUndDienstCollection],
 
   // Your Payload secret - should be a complex and secure string, unguessable
   secret: process.env.PAYLOAD_SECRET || '',
