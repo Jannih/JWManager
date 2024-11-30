@@ -51,8 +51,7 @@ RUN chown -R nextjs:nodejs ./public
 # Setup directories and permissions for runtime
 RUN mkdir .next
 RUN chown nextjs:nodejs .next
-COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
-COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
 
 # Switch to non-root user
 USER nextjs
@@ -62,4 +61,4 @@ EXPOSE 3000
 ENV PORT 3000
 
 # Command to run the application
-CMD HOSTNAME="0.0.0.0" node server.js
+CMD ["pnpm", "start"]
