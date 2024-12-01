@@ -9,7 +9,8 @@ export default buildConfig({
   collections: [LebenUndDienst],
   secret: process.env.PAYLOAD_SECRET || '',
   db: mongooseAdapter({
-    url: process.env.DATABASE_URI || ''
+    url: process.env.DATABASE_URI || '',
+    autoPluralization: false
   }),
   sharp,
 })
