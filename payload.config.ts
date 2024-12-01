@@ -10,6 +10,7 @@ export default buildConfig({
   secret: process.env.PAYLOAD_SECRET || '',
   db: mongooseAdapter({
     url: process.env.DATABASE_URI || '',
+    autoPluralization: false
   }),
   sharp,
 })
