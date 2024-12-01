@@ -2,6 +2,7 @@ import { type CollectionConfig } from 'payload'
 
 export const LebenUndDienst: CollectionConfig = {
   slug: 'leben-und-dienst',
+  plural: 'leben-und-dienst',
   admin: {
     useAsTitle: 'datum',
     defaultColumns: ['datum'],
