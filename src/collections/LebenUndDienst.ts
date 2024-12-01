@@ -44,9 +44,6 @@ export const LebenUndDienst: CollectionConfig = {
                   relationTo: 'users',
                   label: 'Verkündiger auswählen',
                   hasMany: false,
-                  admin: {
-                    isClearable: true,
-                  }
                 },
                 {
                   name: 'customName',
