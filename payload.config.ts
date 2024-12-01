@@ -2,7 +2,7 @@ import sharp from 'sharp'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
 import { buildConfig } from 'payload'
-import { LebenUndDienst } from './collections/LebenUndDienst'
+import { LebenUndDienst } from './src/collections/LebenUndDienst'
 
 export default buildConfig({
   editor: lexicalEditor(),
