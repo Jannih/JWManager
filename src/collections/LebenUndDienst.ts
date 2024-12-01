@@ -35,10 +35,19 @@ export const LebenUndDienst: CollectionConfig = {
             },
             {
               name: 'assignedUser',
-              type: 'relationship',
-              relationTo: 'users',
+              type: 'select',
               label: 'Zugewiesener Verkündiger',
               hasMany: false,
+              options: async ({ payload }) => {
+                const users = await payload.find({
+                  collection: 'users',
+                })
+                return users.docs.map(user => ({
+                  label: user.name || user.email,  // Adjust based on what field you want to show
+                  value: user.id,
+                }))
+              },
+              allowCustomValue: true,  // This allows entering custom text
             }
           ]
         },
