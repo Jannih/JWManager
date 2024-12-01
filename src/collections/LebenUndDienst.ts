@@ -26,8 +26,22 @@ export const LebenUndDienst: CollectionConfig = {
       fields: [
         {
           name: 'aufgabe1',
-          type: 'text',
+          type: 'group',
           label: 'Aufgabe 1',
+          fields: [
+            {
+              name: 'text',
+              type: 'text',
+              label: 'Text',
+            },
+            {
+              name: 'assignedUser',
+              type: 'relationship',
+              relationTo: 'users',
+              label: 'Zugewiesener Verkündiger',
+              hasMany: false,
+            }
+          ]
         },
       ],
     },
