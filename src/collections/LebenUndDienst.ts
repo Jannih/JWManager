@@ -35,22 +35,10 @@ export const LebenUndDienst: CollectionConfig = {
             },
             {
               name: 'assignedTo',
-              type: 'group',
+              type: 'relationship',
               label: 'Zugewiesener Verkündiger',
-              fields: [
-                {
-                  name: 'user',
-                  type: 'relationship',
-                  relationTo: 'users',
-                  label: 'Verkündiger auswählen',
-                  hasMany: false,
-                },
-                {
-                  name: 'customName',
-                  type: 'text',
-                  label: 'Oder Namen eingeben',
-                }
-              ]
+              relationTo: ['users', 'custom-names'],
+              hasMany: false,
             }
           ]
         },
