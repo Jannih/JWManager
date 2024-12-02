@@ -6,26 +6,33 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "import": "node scripts/import.js"
   },
   "dependencies": {
     "@payloadcms/db-mongodb": "^3.2.2",
     "@payloadcms/next": "^3.2.2",
     "@payloadcms/richtext-lexical": "^3.2.2",
+    "date-fns": "^4.1.0",
     "graphql": "^16.9.0",
     "next": "15.0.3",
     "payload": "^3.2.2",
     "react": "19.0.0-rc-66855b96-20241106",
     "react-dom": "19.0.0-rc-66855b96-20241106",
-    "sharp": "^0.33.5"
+    "sharp": "^0.33.5",
+    "sqlite": "^5.1.1",
+    "sqlite3": "^5.1.7",
+    "unzipper": "^0.12.3"
   },
   "devDependencies": {
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/unzipper": "^0.10.10",
     "eslint": "^8",
     "eslint-config-next": "15.0.3",
     "prettier": "^3.4.1",
-    "typescript": "^5"
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.2"
   }
 }
