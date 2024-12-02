@@ -2,7 +2,6 @@ import { type CollectionConfig } from 'payload'
 
 export const LebenUndDienst: CollectionConfig = {
   slug: 'leben-und-dienst',
-  plural: 'leben-und-dienst',
   admin: {
     useAsTitle: 'datum',
     defaultColumns: ['datum'],
@@ -26,8 +25,22 @@ export const LebenUndDienst: CollectionConfig = {
       fields: [
         {
           name: 'aufgabe1',
-          type: 'text',
+          type: 'group',
           label: 'Aufgabe 1',
+          fields: [
+            {
+              name: 'text',
+              type: 'text',
+              label: 'Text',
+            },
+            {
+              name: 'assignedTo',
+              type: 'relationship',
+              label: 'Zugewiesener Verkündiger',
+              relationTo: ['users', 'custom-names'],
+              hasMany: false,
+            }
+          ]
         },
       ],
     },
