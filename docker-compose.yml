@@ -1,20 +1,19 @@
-version: '3.8'
+version: '3'
 
 services:
-  jwmanager:
-    image: ghcr.io/jannih/jwmanager:latest
+  payload:
+    image: node:18-alpine
     ports:
       - '3000:3000'
-    environment:
-      DATABASE_URI: ${DATABASE_URI}
-      PAYLOAD_SECRET: ${PAYLOAD_SECRET}
-      NEXT_PUBLIC_SERVER_URL: ${NEXT_PUBLIC_SERVER_URL}
-      NODE_ENV: production
+    volumes:
+      - .:/home/node/app
+      - node_modules:/home/node/app/node_modules
+    working_dir: /home/node/app/
+    command: sh -c "yarn install && yarn dev"
     depends_on:
       - mongo
     env_file:
       - .env
-    restart: unless-stopped
 
   mongo:
     image: mongo:latest
@@ -24,9 +23,9 @@ services:
       - --storageEngine=wiredTiger
     volumes:
       - data:/data/db
-    restart: unless-stopped
-    environment:
-      MONGO_INITDB_DATABASE: jw-manager
+    logging:
+      driver: none
 
 volumes:
   data:
+  node_modules:
